@@ -1,4 +1,4 @@
-namespace Automotive_IoT_Location;
+namespace CarLocation;
 
 public class Location
 {

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automotive IoT Location", "Automotive IoT Location\Automotive IoT Location.csproj", "{45939A80-941C-4C16-A69C-0EDEE2683D0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarLocation", "CarLocation\CarLocation.csproj", "{45939A80-941C-4C16-A69C-0EDEE2683D0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

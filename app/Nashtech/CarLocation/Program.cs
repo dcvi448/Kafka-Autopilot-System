@@ -4,7 +4,7 @@
  * In order to serve the autopilot system in the future.
  */
 
-using Automotive_IoT_Location;
+using CarLocation;
 
 Console.WriteLine("---------Automovie application---------");
 #region Init the car data
