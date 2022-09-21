@@ -59,8 +59,8 @@ public class Car : IAction
 
     private void SendToTrafficCoordinationSystem()
     {
-        const int delayTime = 1000;
-        var conf = new ProducerConfig { BootstrapServers = "localhost:9092" };
+        const int delayTime = 2000;
+        var conf = new ProducerConfig { BootstrapServers = "127.0.0.1:9092" };
 
         Action<DeliveryReport<Null, string>> handler = r =>
             Console.WriteLine(!r.Error.IsError
