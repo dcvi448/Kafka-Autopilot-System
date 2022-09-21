@@ -59,7 +59,7 @@ void GetVehicleLocation()
                             for (int item = 0; item < allVehicles.Count - 1; item++)
                             {
                                 Console.WriteLine(
-                                    $"Vehicle {allVehicles[item].Plate} <-> {allVehicles[item].Plate} is: {Math.Round(GetMinimumDistanceBetweenOtherCar(allVehicles[item], allVehicles[item + 1]))}");
+                                    $"Vehicle {allVehicles[item].Plate} <-> {allVehicles[item + 1].Plate} is: {Math.Round(GetMinimumDistanceBetweenOtherCar(allVehicles[item], allVehicles[item + 1]))}");
                             }
                         }
                     }
