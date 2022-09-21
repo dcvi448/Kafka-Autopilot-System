@@ -28,5 +28,3 @@ Thread th2 = new Thread(() => carNumber2.Running());
 th2.Start();
 
 #endregion
-
-

@@ -4,16 +4,18 @@ using Newtonsoft.Json;
 
 namespace Vehicle;
 
-public class Car : Location, IAction
+public class Car : IAction
 {
-    public string Name { get; set; }
-    public string Plate { get; set; }
+    public string? Name { get; set; }
+    public string? Plate { get; set; }
     public bool IsRunning { get; set; }
+    public Coordinates? Location { get; set; }
 
     public Car()
     {
         IsRunning = false;
     }
+
     public Car(string name, string plate)
     {
         Name = name;
@@ -26,24 +28,18 @@ public class Car : Location, IAction
     {
         const int minimumCoordinate = 10;
         Random rd = new Random();
-        UpperLeftCorner = new Coordinates()
-            { X = rd.NextDouble() + minimumCoordinate, Y = rd.NextDouble() + minimumCoordinate };
-        UpperRightCorner = new Coordinates()
-            { X = rd.NextDouble() + minimumCoordinate, Y = rd.NextDouble() + minimumCoordinate };
-        BottomLeftCorner = new Coordinates()
-            { X = rd.NextDouble() + minimumCoordinate, Y = rd.NextDouble() + minimumCoordinate };
-        BottomRightCorner = new Coordinates()
+        this.Location = new Coordinates()
             { X = rd.NextDouble() + minimumCoordinate, Y = rd.NextDouble() + minimumCoordinate };
         SendToTrafficCoordinationSystem();
     }
-    
+
     public void Running()
     {
         IsRunning = true;
         while (IsRunning)
         {
             this.GetVehicleLocationFromSensor();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
         }
     }
 
@@ -57,9 +53,10 @@ public class Car : Location, IAction
         IsRunning = true;
         this.GetVehicleLocationFromSensor();
     }
-    
-    
+
+
     #region Send To Traffic Coordination System via Kafka
+
     private void SendToTrafficCoordinationSystem()
     {
         const int delayTime = 1000;
@@ -72,9 +69,11 @@ public class Car : Location, IAction
 
         using (var p = new ProducerBuilder<Null, string>(conf).Build())
         {
-            p.Produce("traffic-system", new Message<Null, string> { Value = JsonConvert.SerializeObject(this) }, handler);
+            p.Produce("traffic-system", new Message<Null, string> { Value = JsonConvert.SerializeObject(this) },
+                handler);
             p.Flush(TimeSpan.FromMilliseconds(delayTime));
         }
     }
+
     #endregion
 }

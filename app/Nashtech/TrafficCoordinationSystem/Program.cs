@@ -5,27 +5,16 @@ using Vehicle;
 
 Console.WriteLine("---------Traffic Coordination system---------");
 
+List<Car> allVehicles = new List<Car>();
 GetVehicleLocation();
 
 
 double GetMinimumDistanceBetweenOtherCar(Car car1, Car car2)
 {
-    List<double> distanceCorner = new List<double>();
-    var distanceUpperLeft =
-        new GeoCoordinate(car1.UpperLeftCorner.X, car1.UpperLeftCorner.Y).GetDistanceTo(
-            new GeoCoordinate(car2.UpperLeftCorner.X,car2.UpperLeftCorner.Y));
-    var distanceUpperRight =
-        new GeoCoordinate(car1.UpperLeftCorner.X, car1.UpperLeftCorner.Y).GetDistanceTo(
-            new GeoCoordinate(car2.UpperRightCorner.X, car2.UpperRightCorner.Y));
-    var distanceBottomLeft =
-        new GeoCoordinate(car1.UpperLeftCorner.X, car1.UpperLeftCorner.Y).GetDistanceTo(
-            new GeoCoordinate(car2.BottomLeftCorner.X,car2.BottomLeftCorner.Y));
-    var distanceBottomRight =
-        new GeoCoordinate(car1.UpperLeftCorner.X, car1.UpperLeftCorner.Y).GetDistanceTo(
-            new GeoCoordinate(car2.BottomRightCorner.X,car2.BottomRightCorner.Y));
-    distanceCorner.AddRange(
-        new[] { distanceUpperLeft, distanceUpperRight, distanceBottomLeft, distanceBottomRight });
-    return distanceCorner.Min();
+    if (car1.Location != null && car2.Location != null)
+        return new GeoCoordinate(car1.Location.X, car1.Location.Y).GetDistanceTo(
+            new GeoCoordinate(car2.Location.X, car2.Location.Y));
+    return -1;
 }
 
 void GetVehicleLocation()
@@ -57,7 +46,23 @@ void GetVehicleLocation()
                     var cr = c.Consume(cts.Token);
                     var vehicle = JsonConvert.DeserializeObject<Car>(cr.Value);
                     if (vehicle != null)
-                        Console.WriteLine($"Vehicle {vehicle.Name} - {vehicle.Plate} at: X = '{vehicle.BottomLeftCorner.X}' Y= '{vehicle.BottomLeftCorner.Y}'");
+                    {
+                        Console.WriteLine(
+                            $"Vehicle {vehicle.Name} - {vehicle.Plate} at: X = '{vehicle.Location?.X}' Y= '{vehicle.Location?.Y}'");
+                        int indexVehicle = allVehicles.FindIndex(item => item.Plate == vehicle.Plate);
+                        if (indexVehicle != -1)
+                            allVehicles[indexVehicle].Location = vehicle.Location;
+                        else
+                            allVehicles.Add(vehicle);
+                        if (allVehicles.Count > 1)
+                        {
+                            for (int item = 0; item < allVehicles.Count - 1; item++)
+                            {
+                                Console.WriteLine(
+                                    $"Vehicle {allVehicles[item].Plate} <-> {allVehicles[item].Plate} is: {Math.Round(GetMinimumDistanceBetweenOtherCar(allVehicles[item], allVehicles[item + 1]))}");
+                            }
+                        }
+                    }
                 }
                 catch (ConsumeException e)
                 {
