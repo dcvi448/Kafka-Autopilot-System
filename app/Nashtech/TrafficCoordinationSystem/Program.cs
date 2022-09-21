@@ -2,6 +2,8 @@
 
 Console.WriteLine("---------Traffic Coordination system---------");
 
+GetVehicleLocation();
+
 void GetVehicleLocation()
 {
     var conf = new ConsumerConfig

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleLocation", "VehicleLocation\VehicleLocation.csproj", "{45939A80-941C-4C16-A69C-0EDEE2683D0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleFaking", "VehicleFaking\VehicleFaking.csproj", "{45939A80-941C-4C16-A69C-0EDEE2683D0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficCoordinationSystem", "TrafficCoordinationSystem\TrafficCoordinationSystem.csproj", "{7C5B47CF-225D-42E2-9E08-F536957A8FE9}"
 EndProject
