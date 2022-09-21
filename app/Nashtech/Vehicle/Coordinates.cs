@@ -1,4 +1,4 @@
-namespace CarLocation;
+namespace Vehicle;
 
 public class Coordinates
 {

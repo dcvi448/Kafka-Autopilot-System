@@ -1,6 +1,6 @@
 using GeoCoordinatePortable;
 
-namespace CarLocation;
+namespace Vehicle;
 
 public class Car : Location
 {

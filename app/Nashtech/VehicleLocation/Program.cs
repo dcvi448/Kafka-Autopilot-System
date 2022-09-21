@@ -4,7 +4,7 @@
  * In order to serve the autopilot system in the future.
  */
 
-using CarLocation;
+using Vehicle;
 using Confluent.Kafka;
 using Newtonsoft.Json;
 
