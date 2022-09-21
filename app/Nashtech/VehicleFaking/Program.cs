@@ -20,10 +20,12 @@ Car carNumber2 = new Car("Car2", "30A-54321");
 #region Faking the car location in the real time using the Thread for each car
 
 carNumber1.StartEngine();
-carNumber1.Running();
+Thread th1 = new Thread(() => carNumber1.Running());
+th1.Start();
 
 carNumber2.StartEngine();
-carNumber2.Running();
+Thread th2 = new Thread(() => carNumber2.Running());
+th2.Start();
 
 #endregion
 

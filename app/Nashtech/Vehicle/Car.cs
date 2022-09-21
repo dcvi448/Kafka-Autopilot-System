@@ -9,6 +9,11 @@ public class Car : Location, IAction
     public string Name { get; set; }
     public string Plate { get; set; }
     public bool IsRunning { get; set; }
+
+    public Car()
+    {
+        IsRunning = false;
+    }
     public Car(string name, string plate)
     {
         Name = name;
@@ -31,31 +36,7 @@ public class Car : Location, IAction
             { X = rd.NextDouble() + minimumCoordinate, Y = rd.NextDouble() + minimumCoordinate };
         SendToTrafficCoordinationSystem();
     }
-
-    public double GetMinimumDistanceBetweenOtherCar(Car other)
-    {
-        List<double> distanceCorner = new List<double>();
-        var distanceUpperLeft =
-            new GeoCoordinate(UpperLeftCorner.X, UpperLeftCorner.Y).GetDistanceTo(
-                new GeoCoordinate(other.UpperLeftCorner.X,
-                    other.UpperLeftCorner.Y));
-        var distanceUpperRight =
-            new GeoCoordinate(UpperRightCorner.X, UpperRightCorner.Y).GetDistanceTo(
-                new GeoCoordinate(other.UpperRightCorner.X,
-                    other.UpperRightCorner.Y));
-        var distanceBottomLeft =
-            new GeoCoordinate(BottomLeftCorner.X, BottomLeftCorner.Y).GetDistanceTo(
-                new GeoCoordinate(other.BottomLeftCorner.X,
-                    other.BottomLeftCorner.Y));
-        var distanceBottomRight =
-            new GeoCoordinate(BottomRightCorner.X, BottomRightCorner.Y).GetDistanceTo(
-                new GeoCoordinate(other.BottomRightCorner.X,
-                    other.BottomRightCorner.Y));
-        distanceCorner.AddRange(
-            new[] { distanceUpperLeft, distanceUpperRight, distanceBottomLeft, distanceBottomRight });
-        return distanceCorner.Min();
-    }
-
+    
     public void Running()
     {
         IsRunning = true;
@@ -86,7 +67,7 @@ public class Car : Location, IAction
 
         Action<DeliveryReport<Null, string>> handler = r =>
             Console.WriteLine(!r.Error.IsError
-                ? $"Delivered message to {r.TopicPartitionOffset}"
+                ? $"{this.Name} - {this.Plate} => {r.TopicPartitionOffset}"
                 : $"Delivery Error: {r.Error.Reason}");
 
         using (var p = new ProducerBuilder<Null, string>(conf).Build())
