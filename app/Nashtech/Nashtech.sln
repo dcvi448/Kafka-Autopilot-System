@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarLocation", "CarLocation\CarLocation.csproj", "{45939A80-941C-4C16-A69C-0EDEE2683D0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficCoordinationSystem", "TrafficCoordinationSystem\TrafficCoordinationSystem.csproj", "{7C5B47CF-225D-42E2-9E08-F536957A8FE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{45939A80-941C-4C16-A69C-0EDEE2683D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45939A80-941C-4C16-A69C-0EDEE2683D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45939A80-941C-4C16-A69C-0EDEE2683D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C5B47CF-225D-42E2-9E08-F536957A8FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C5B47CF-225D-42E2-9E08-F536957A8FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C5B47CF-225D-42E2-9E08-F536957A8FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C5B47CF-225D-42E2-9E08-F536957A8FE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
