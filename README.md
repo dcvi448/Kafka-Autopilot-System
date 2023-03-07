@@ -1,4 +1,4 @@
-# The system simulates the position of the cars in circulation.
+# The system simulates the position of the cars in circulation (Docker + .NET6 + Kafka)
 
 Each vehicle position is simulated by 1 task. In order to serve the autopilot system in the future.
 
